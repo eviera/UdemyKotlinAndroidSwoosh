@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.eviera.cursokotlindevslopes.udemykotlinandroidswoosh.SkillActivity">
+    tools:context="net.eviera.cursokotlindevslopes.udemykotlinandroidswoosh.controller.SkillActivity">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/finishSkillBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -53,6 +53,7 @@
         android:layout_marginStart="16dp"
         android:background="@drawable/swoosh_button"
         android:fontFamily="@font/montserrat"
+        android:onClick="onFinishClicked"
         android:text="FINISH"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
@@ -71,24 +72,26 @@
         app:layout_constraintTop_toBottomOf="@id/textView4">
 
         <ToggleButton
-            android:id="@+id/toggleButton4"
+            android:id="@+id/begginerSkillBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:background="@drawable/swoosh_toggle"
             android:fontFamily="@font/montserrat"
+            android:onClick="onBegginerClicked"
             android:text="BEGGINER"
             android:textColor="@android:color/white"
             android:textOff="BEGGINER"
             android:textOn="BEGGINER" />
 
         <ToggleButton
-            android:id="@+id/toggleButton5"
+            android:id="@+id/ballerSkillBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_weight="1"
+            android:onClick="onBallerClicked"
             android:background="@drawable/swoosh_toggle"
             android:fontFamily="@font/montserrat"
             android:text="BALLER"

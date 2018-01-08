@@ -1,4 +1,4 @@
-package net.eviera.cursokotlindevslopes.udemykotlinandroidswoosh
+package net.eviera.cursokotlindevslopes.udemykotlinandroidswoosh.controller
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
