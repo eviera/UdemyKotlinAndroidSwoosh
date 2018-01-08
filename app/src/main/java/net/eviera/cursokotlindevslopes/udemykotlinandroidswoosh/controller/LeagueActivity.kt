@@ -2,15 +2,35 @@ package net.eviera.cursokotlindevslopes.udemykotlinandroidswoosh.controller
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_league.*
-import net.eviera.cursokotlindevslopes.udemykotlinandroidswoosh.utilities.EXTRA_LEAGUE
 import net.eviera.cursokotlindevslopes.udemykotlinandroidswoosh.R
+import net.eviera.cursokotlindevslopes.udemykotlinandroidswoosh.model.Player
+import net.eviera.cursokotlindevslopes.udemykotlinandroidswoosh.utilities.EXTRA_PLAYER
 
 class LeagueActivity : BaseActivity() {
 
-    var selectedLeague = ""
+    var player = Player("", "")
+
+    /**
+     * Cuando se rota se salva el estado
+     */
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        outState?.putParcelable(EXTRA_PLAYER, player)
+    }
+
+    /**
+     * Cuando se recrea la actividad, levanta el estado grabado
+     */
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState != null) {
+            player = savedInstanceState.getParcelable(EXTRA_PLAYER)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,9 +41,9 @@ class LeagueActivity : BaseActivity() {
         womensLeagueBtn.isChecked = false
         coedLeagueBtn.isChecked = false
         if (mensLeagueBtn.isChecked) {
-            selectedLeague = "mens"
+            player.league = "mens"
         } else {
-            selectedLeague = ""
+            player.league = ""
         }
     }
 
@@ -31,9 +51,9 @@ class LeagueActivity : BaseActivity() {
         mensLeagueBtn.isChecked = false
         coedLeagueBtn.isChecked = false
         if (womensLeagueBtn.isChecked) {
-            selectedLeague = "womens"
+            player.league = "womens"
         } else {
-            selectedLeague = ""
+            player.league = ""
         }
 
     }
@@ -42,18 +62,18 @@ class LeagueActivity : BaseActivity() {
         womensLeagueBtn.isChecked = false
         mensLeagueBtn.isChecked = false
         if (coedLeagueBtn.isChecked) {
-            selectedLeague = "co-ed"
+            player.league = "co-ed"
         } else {
-            selectedLeague = ""
+            player.league = ""
         }
 
     }
 
 
     fun leagueNextClicked(view: View) {
-        if (selectedLeague != "") {
+        if (player.league != "") {
             val skillActivity = Intent(this, SkillActivity::class.java)
-            skillActivity.putExtra(EXTRA_LEAGUE, selectedLeague)
+            skillActivity.putExtra(EXTRA_PLAYER, player)
             startActivity(skillActivity)
         } else {
             Toast.makeText(this, "Please select a league", Toast.LENGTH_SHORT).show()
